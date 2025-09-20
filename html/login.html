@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+    <!-- 🟧 Modal Đăng nhập/Đăng ký -->
+    <img src="../img/xiaomi_redmi_14c_5_.webp" alt="">
+    <img src="../img/dien-thoai-oppo-find-x8-xam-1.webp" alt="">
+    <img src="../img/iphone-16-xanh-mong-ket-thumbnew-600x600.png" alt="">
+    <img src="../img/dien-thoai-poco-x7-pro-5g_1_.webp" alt="">
+    <div class="modal-backdrop" id="authModal">
+        <div class="modal">
+            <div class="tabs">
+                <button class="tab active" id="tab-login">Đăng nhập</button>
+                <button class="tab" id="tab-register">Đăng ký</button>
+            </div>
+
+            <!-- Form đăng nhập -->
+            <form id="loginForm">
+                <h3>Đăng nhập</h3>
+                <input id="login-username" type="text" placeholder="Tên đăng nhập" required />
+                <input id="login-password" type="password" placeholder="Mật khẩu" required />
+                <button type="submit" class="btn">Đăng nhập</button>
+                <div id="loginMsg"></div>
+            </form>
+
+            <!-- Form đăng ký -->
+            <form id="registerForm" style="display:none">
+                <h3>Đăng ký</h3>
+                <input id="reg-username" type="text" placeholder="Tên đăng nhập" required />
+                <input id="reg-email" type="email" placeholder="Email (tùy chọn)" />
+                <input id="reg-password" type="password" placeholder="Mật khẩu" required />
+                <input id="reg-password2" type="password" placeholder="Nhập lại mật khẩu" required />
+                <button type="submit" class="btn">Đăng ký</button>
+                <div id="regMsg"></div>
+            </form>
+
+            <div class="close-wrap">
+                <button class="btn secondary" id="closeAuth">Đóng</button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/login.js">
+    </script>
+
+
+
+</body>
+
+</html>

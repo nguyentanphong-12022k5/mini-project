@@ -1,0 +1,232 @@
+/* 🎨 Biến màu dùng chung */
+
+:root {
+    --accent: #ff6b00;
+    --muted: #6b7280;
+    --card: #fff;
+    --bg: #f5f7fb
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    font-family: Inter, system-ui, Arial, sans-serif;
+    background: var(--bg);
+    margin: 0;
+    color: #111
+}
+
+
+/* 🟧 Header + menu điều hướng */
+
+header {
+    background: #fff;
+    border-bottom: 1px solid #e6e9ef;
+    position: sticky;
+    top: 0;
+    z-index: 40
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0
+}
+
+.logo {
+    font-weight: 700;
+    color: var(--accent)
+}
+
+.menu {
+    display: flex;
+    gap: 12px
+}
+
+.menu a {
+    text-decoration: none;
+    color: #111;
+    font-size: 14px
+}
+
+.menu a:hover {
+    color: var(--accent)
+}
+
+.search {
+    flex: 1
+}
+
+.search input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #dbe3ee
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.cart .count {
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 13px
+}
+
+
+/* 🟧 Hero giới thiệu */
+
+.hero {
+    background: linear-gradient(90deg, #fff 0, #fff 60%, rgba(255, 107, 0, 0.06)100%);
+    padding: 28px 0
+}
+
+.hero-grid {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between
+}
+
+.hero-text h1 {
+    margin: 0;
+    font-size: 28px
+}
+
+.hero-text p {
+    color: var(--muted);
+    margin-top: 8px
+}
+
+.hero-img {
+    font-size: 64px
+}
+
+
+/* 🟧 Banner khuyến mãi */
+
+.promo {
+    display: flex;
+    gap: 16px;
+    margin: 20px 0
+}
+
+.promo-card {
+    flex: 1;
+    background: var(--accent);
+    color: #fff;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-align: center
+}
+
+
+/* 🟧 Product grid */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 20px 0
+}
+
+.card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #e9eef6;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04)
+}
+
+.thumb {
+    height: 150px;
+    border-radius: 8px;
+    background: #f0f4f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px
+}
+
+.title {
+    font-size: 15px;
+    margin: 0 0 6px
+}
+
+.price {
+    font-weight: 700;
+    color: var(--accent)
+}
+
+.meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px
+}
+
+.btn {
+    background: var(--accent);
+    color: #fff;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer
+}
+
+.btn.secondary {
+    background: #fff;
+    color: var(--accent);
+    border: 1px solid #ffd0b3
+}
+
+
+/* 🟧 Modal giỏ hàng */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center
+}
+
+.modal {
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 100%
+}
+
+
+/* 📱 Responsive */
+
+@media (max-width:720px) {
+    .hero-grid {
+        flex-direction: column;
+        align-items: flex-start
+    }
+    .thumb {
+        height: 120px
+    }
+    .promo {
+        flex-direction: column
+    }
+}

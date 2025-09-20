@@ -1,0 +1,98 @@
+:root {
+  --accent: #ff6600; /* Màu cam */
+  --card: #fff;      /* Nền trắng modal */
+  --muted: #555;     /* Màu chữ phụ */
+}
+
+/* Nền mờ toàn màn hình */
+.modal-backdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal chính */
+.modal {
+  background: var(--card);
+  color: #111;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tab {
+  background: var(--card);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 4px;
+}
+
+.tab.active {
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+}
+
+/* Tiêu đề form */
+form h3 {
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+/* Ô input */
+form input {
+  border: 1px solid var(--accent);
+  background: #fff;
+  color: #111;
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Nút chính */
+form .btn {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Thông báo */
+#loginMsg,
+#regMsg {
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* Nút đóng */
+.close-wrap {
+  text-align: right;
+  margin-top: 12px;
+}
+
+.btn.secondary {
+  background: #fff;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+}

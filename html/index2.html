@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Trang chủ - Demo TGDD</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- 🟧 Header + Menu điều hướng -->
+    <header>
+        <div class="container nav">
+            <div class="logo">TGDD-Demo</div>
+            <nav class="menu">
+                <a href="#">Trang chủ</a>
+                <a href="#">Sản phẩm</a>
+                <a href="#">Khuyến mãi</a>
+                <a href="#">Liên hệ</a>
+            </nav>
+            <div class="search">
+                <input id="searchInput" placeholder="Tìm kiếm điện thoại, laptop, phụ kiện..." />
+            </div>
+            <div class="cart">
+                <button class="btn secondary" id="viewCartBtn">Giỏ hàng</button>
+                <div class="count" id="cartCount">0</div>
+                <button class="btn secondary" id="viewCartBtn_dn">Đăng nhập/Đăng ký</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 🟧 Hero: Giới thiệu sản phẩm nổi bật -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Sản phẩm nổi bật hôm nay</h1>
+                    <p>Khám phá điện thoại, laptop, phụ kiện với giá cực tốt. Mua nhanh - Giao hàng tận nhà.</p>
+                </div>
+                <div class="hero-img">🔥</div>
+            </div>
+        </section>
+
+        <!-- 🟧 Banner khuyến mãi -->
+        <section class="promo">
+            <div class="promo-card">
+                🎉 Khuyến mãi cuối tuần: Giảm 20% tất cả phụ kiện!
+            </div>
+            <div class="promo-card">
+                🚚 Miễn phí vận chuyển đơn từ 500k
+            </div>
+        </section>
+
+        <!-- 🟧 Danh sách sản phẩm -->
+        <section>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+                <h2>Sản phẩm nổi bật</h2>
+                <div style="color:var(--muted)">Hiển thị<span id="shownCount">0</span> sản phẩm</div>
+            </div>
+            <div class="grid" id="productGrid"></div>
+        </section>
+    </main>
+
+    <!-- 🟧 Modal giỏ hàng -->
+    <div class="modal-backdrop" id="modal">
+        <div class="modal">
+            <h3>Giỏ hàng</h3>
+            <div id="cartList" style="margin-top:10px"></div>
+            <div style="text-align:right;margin-top:12px">
+                <button class="btn secondary" id="closeModal">Đóng</button>
+                <button class="btn" id="checkoutBtn">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

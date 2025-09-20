@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh mục sản phẩm</title>
+    <link rel="stylesheet" href="../css/sanpham.css">
+</head>
+
+<body>
+    <header>
+        <h1>Danh mục sản phẩm</h1>
+    </header>
+
+    <aside class="filters">
+        <h3>Bộ lọc</h3>
+
+        <label>Phân loại:</label>
+        <select id="filterCategory">
+      <option value="">Tất cả</option>
+      <option value="Shoes">Điện thoại</option>
+      <option value="Clothes">Laptop</option>
+      <option value="Accessories">Phụ kiện</option>
+    </select>
+
+        <label>Thương hiệu:</label>
+        <select id="filterBrand">
+      <option value="">Tất cả</option>
+      <option value="Nike">Iphone</option>
+      <option value="Adidas">Samsung</option>
+      <option value="Puma">Xiaomi</option>
+    </select>
+
+        <label>Giá tối đa:</label>
+        <input type="number" id="filterPrice" placeholder="Nhập giá">
+
+        <button id="btnFilter">Lọc</button>
+    </aside>
+
+    <main>
+        <div id="productGrid" class="product-grid"></div>
+    </main>
+
+    <script src="../js/sanpham.js"></script>
+</body>
+
+</html>
