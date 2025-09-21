@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f6f9;
+    color: #333;
+}
+
+header {
+    background: #007bff;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+header nav {
+    margin-top: 10px;
+}
+
+header nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+
+/* Accordion tổng thể */
+
+.accordion {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+
+/* Mỗi mục */
+
+.accordion-item {
+    background: #fff;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+
+/* Nút tiêu đề */
+
+.accordion-header {
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    background: #f7f9fc;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Mũi tên */
+
+.accordion-header::after {
+    content: "▼";
+    font-size: 14px;
+    transition: transform 0.3s;
+}
+
+.accordion-item.active .accordion-header::after {
+    transform: rotate(180deg);
+}
+
+
+/* Nội dung */
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 15px;
+    line-height: 1.6;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 400px;
+    /* Giới hạn chiều cao */
+    overflow-y: auto;
+    /* Thêm cuộn dọc nếu quá dài */
+    padding: 15px;
+}
