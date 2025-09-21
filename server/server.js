@@ -133,7 +133,8 @@ app.get("/api/products", async(req, res) => {
 // ==========================
 // START SERVER
 // ==========================
-const PORT = 5000;
+// Start server
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`🚀 Server chạy tại http://localhost:${PORT}`);
 });
