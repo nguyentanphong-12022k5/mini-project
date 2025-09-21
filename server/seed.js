@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 
 // Kết nối 
 //mongodb://127.0.0.1:27017/ecommerce
-mongoose.connect("mongodb+srv://nguyentanphong120295_db_user:tanphong789@cluster0.9jdlnmf.mongodb.net/ecommerce", {
+mongoose.connect("mongodb+srv://nguyentanphong120295_db_user:tanphong789@cluster0.9jdlnmf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
