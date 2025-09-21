@@ -2,8 +2,10 @@
     "name": "mini-project",
     "version": "1.0.0",
     "type": "commonjs",
+
     "scripts": {
-        "start": "node server/server.js"
+        "start": "node server.js",
+        "seed": "node seed.js"
     },
     "dependencies": {
         "express": "^4.19.2",
