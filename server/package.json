@@ -2,6 +2,9 @@
     "name": "mini-project",
     "version": "1.0.0",
     "type": "commonjs",
+    "scripts": {
+        "start": "node server/server.js"
+    },
     "dependencies": {
         "express": "^4.19.2",
         "mongoose": "^8.5.0",
