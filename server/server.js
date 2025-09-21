@@ -102,7 +102,7 @@ app.use(express.static(path.join(__dirname, "..")));
 // ==========================
 // KẾT NỐI MONGODB
 // ==========================
-mongoose.connect("mongodb://127.0.0.1:27017/ecommerce", {
+mongoose.connect("mongodb+srv://nguyentanphong120295_db_user:tanphong789@cluster0.9jdlnmf.mongodb.net/", {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
