@@ -2,6 +2,7 @@
     "name": "mini-project",
     "version": "1.0.0",
     "type": "commonjs",
+    "MongoDB": "mongodb+srv://nguyentanphong120295_db_user:tanphong789@cluster0.9jdlnmf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
     "scripts": {
         "start": "node server.js",
         "seed": "node seed.js"
