@@ -230,3 +230,52 @@ header {
         flex-direction: column
     }
 }
+
+.user-avatar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.user-avatar img {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+}
+
+.user-avatar span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-width: 180px;
+    flex-direction: column;
+    z-index: 100;
+}
+
+.dropdown a {
+    padding: 10px;
+    text-decoration: none;
+    color: #111;
+    font-size: 14px;
+}
+
+.dropdown a:hover {
+    background: #f5f7fb;
+    color: var(--accent);
+}
+
+.dropdown.show {
+    display: flex;
+}

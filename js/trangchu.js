@@ -100,6 +100,48 @@ document.addEventListener('click', e => {
         return;
     }
 });
+// 🟧 Xử lý avatar và menu tài khoản
+function renderUserUI() {
+    const userMenu = document.getElementById("userMenu");
+    const user = localStorage.getItem("username");
+
+    if (user) {
+        userMenu.innerHTML = `
+            <div class="user-avatar" id="avatarBtn">
+                <img src="https://i.pravatar.cc/40" alt="avatar">
+                <span>${user}</span>
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="../miniproject_quan/profile_user/account.html">👤 Tài khoản của tôi</a>
+                    <a href="#">📦 Đơn hàng của tôi</a>
+                    <a href="#" id="logoutBtn">🚪 Đăng xuất</a>
+                </div>
+            </div>
+        `;
+    } else {
+        userMenu.innerHTML = `<button class="btn secondary" id="loginBtn">Đăng nhập/Đăng ký</button>`;
+    }
+}
+
+// 🟧 Dropdown toggle
+document.addEventListener("click", (e) => {
+    const avatar = e.target.closest("#avatarBtn");
+    const dropdown = document.getElementById("dropdownMenu");
+
+    if (avatar && dropdown) {
+        dropdown.classList.toggle("show");
+    } else {
+        if (dropdown) dropdown.classList.remove("show");
+    }
+
+    if (e.target.id === "logoutBtn") {
+        localStorage.removeItem("username");
+        localStorage.removeItem("password");
+        renderUserUI();
+    }
+});
+
+// Gọi khi load trang
+renderUserUI();
 
 // 🟧 Tìm kiếm sản phẩm
 document.getElementById('searchInput').addEventListener('input', (ev) => {

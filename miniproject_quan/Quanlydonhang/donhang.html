@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý đơn hàng - TGDD Demo</title>
+  <link rel="stylesheet" href="/Quanlydonhang/donhang.css">
+/>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo"><strong style="color:#ff6a00;">TGDD-Demo</strong></div>
+    <nav>
+      <a href="#">Trang chủ</a>
+      <a href="#">Sản phẩm</a>
+      <a href="#">Khuyến mãi</a>
+      <a href="#">Liên hệ</a>
+    </nav>
+    <div>
+      <button>Giỏ hàng (0)</button>
+      <button>Đăng xuất</button>
+    </div>
+  </header>
+
+  <!-- Nội dung chính -->
+  <main class="container">
+    <h2>Quản lý đơn hàng</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Mã đơn</th>
+          <th>Sản phẩm</th>
+          <th>Tổng tiền</th>
+          <th>Trạng thái</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="orderTable">
+        <!-- JS sẽ load dữ liệu vào đây -->
+      </tbody>
+    </table>
+
+    <!-- Chi tiết đơn hàng -->
+    <div class="order-detail" id="orderDetail">
+      <h3>Chi tiết đơn hàng</h3>
+      <p><strong>Mã đơn:</strong> <span id="detailId"></span></p>
+      <p><strong>Sản phẩm:</strong> <span id="detailProduct"></span></p>
+      <p><strong>Tổng tiền:</strong> <span id="detailTotal"></span></p>
+      <p><strong>Trạng thái:</strong> <span id="detailStatus"></span></p>
+      <button id="closeDetail">Đóng</button>
+    </div>
+
+    <!-- Thông báo -->
+    <div class="alert" id="alertMsg"></div>
+  </main>
+
+  <script src="/Quanlydonhang/donhang.js"></script>
+</body>
+</html>

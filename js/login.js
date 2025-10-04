@@ -26,68 +26,54 @@ closeBtn.addEventListener("click", () => {
     modal.style.display = "none";
 });
 
-// 👉 Xử lý đăng nhập (giả lập)
-loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const user = document.getElementById("login-username").value;
-    const pass = document.getElementById("login-password").value;
-
-    if (user === "admin" && pass === "123") {
-        document.getElementById("loginMsg").innerText = "✅ Đăng nhập thành công!";
-        document.getElementById("loginMsg").style.color = "green";
-    } else {
-        document.getElementById("loginMsg").innerText = "❌ Sai tên đăng nhập hoặc mật khẩu!";
-        document.getElementById("loginMsg").style.color = "red";
-    }
-});
-
-// 👉 Xử lý đăng ký (giả lập)
+// 👉 Đăng ký
 registerForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const user = document.getElementById("reg-username").value;
     const pass = document.getElementById("reg-password").value;
     const pass2 = document.getElementById("reg-password2").value;
+    const email = document.getElementById("reg-email").value;
 
     if (pass !== pass2) {
         document.getElementById("regMsg").innerText = "❌ Mật khẩu nhập lại không khớp!";
         document.getElementById("regMsg").style.color = "red";
     } else {
-        document.getElementById("regMsg").innerText = "✅ Đăng ký thành công!";
-        document.getElementById("regMsg").style.color = "green";
-    }
-});
-// Đăng ký
-registerForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const user = document.getElementById("reg-username").value;
-    const pass = document.getElementById("reg-password").value;
-    const pass2 = document.getElementById("reg-password2").value;
+        // 👉 Lưu vào localStorage (gói thành userData)
+        const userData = {
+            username: user,
+            password: pass,
+            email: email, // bạn có thể thêm field
+            phone: "",
+            address: "",
+            avatar: "https://i.pravatar.cc/120"
+        };
 
-    if (pass !== pass2) {
-        document.getElementById("regMsg").innerText = "❌ Mật khẩu nhập lại không khớp!";
-        document.getElementById("regMsg").style.color = "red";
-    } else {
-        // 👉 Lưu vào localStorage
-        localStorage.setItem("username", user);
-        localStorage.setItem("password", pass);
+        localStorage.setItem("userData", JSON.stringify(userData));
 
         document.getElementById("regMsg").innerText = "✅ Đăng ký thành công!";
         document.getElementById("regMsg").style.color = "green";
+
+        setTimeout(() => {
+            window.location.href = "../html/Trangchu.html";
+        }, 1000);
     }
 });
 
-// Đăng nhập
+// 👉 Đăng nhập
 loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const user = document.getElementById("login-username").value;
     const pass = document.getElementById("login-password").value;
+    const email = document.getElementById("reg-email").value;
+    const savedUser = JSON.parse(localStorage.getItem("userData"));
 
-    const savedUser = localStorage.getItem("username");
-    const savedPass = localStorage.getItem("password");
-
-    if (user === savedUser && pass === savedPass) {
+    if (savedUser && user === savedUser.username && pass === savedUser.password) {
         document.getElementById("loginMsg").innerText = "✅ Đăng nhập thành công!";
         document.getElementById("loginMsg").style.color = "green";
+
+        setTimeout(() => {
+            window.location.href = "../html/Trangchu.html";
+        }, 1000);
     } else {
         document.getElementById("loginMsg").innerText = "❌ Sai tên đăng nhập hoặc mật khẩu!";
         document.getElementById("loginMsg").style.color = "red";
