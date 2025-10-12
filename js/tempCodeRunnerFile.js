@@ -173,20 +173,17 @@
 // // 🟧 Khởi tạo
 // loadProducts();
 // ================================
-// 🟧 STATE (Trạng thái toàn cục)
+// 🟧 STATE GIỎ HÀNG
 // ================================
-const state = {
-    cart: {},
-    products: []
-};
+const state = { cart: {}, products: [] };
 
 // ================================
-// 🟧 HÀM FORMAT GIÁ (ví dụ: 15990000 -> 15.990.000₫)
+// 🟧 HÀM FORMAT GIÁ
 // ================================
 const fmt = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '₫';
 
 // ================================
-// 🟧 RENDER NGƯỜI DÙNG
+// 🟧 HIỂN THỊ NGƯỜI DÙNG
 // ================================
 function renderUserUI() {
     const userMenu = document.getElementById("userMenu");
@@ -205,19 +202,19 @@ function renderUserUI() {
             </div>
         `;
     } else {
-        userMenu.innerHTML = `
-            <button class="btn secondary" id="loginBtn">Đăng nhập/Đăng ký</button>
-        `;
+        userMenu.innerHTML = `<button class="btn secondary" id="loginBtn">Đăng nhập/Đăng ký</button>`;
     }
 }
 
-// Toggle dropdown và logout
 document.addEventListener("click", (e) => {
     const avatar = e.target.closest("#avatarBtn");
     const dropdown = document.getElementById("dropdownMenu");
 
-    if (avatar && dropdown) dropdown.classList.toggle("show");
-    else if (dropdown) dropdown.classList.remove("show");
+    if (avatar && dropdown) {
+        dropdown.classList.toggle("show");
+    } else if (dropdown) {
+        dropdown.classList.remove("show");
+    }
 
     if (e.target.id === "logoutBtn") {
         localStorage.removeItem("currentUser");
@@ -235,21 +232,23 @@ renderUserUI();
 // 🟧 RENDER DANH SÁCH SẢN PHẨM
 // ================================
 function renderProducts(list) {
-    const grid = document.getElementById("productGrid");
-    grid.innerHTML = "";
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = '';
 
     list.forEach(p => {
-        // Lấy giá đầu tiên trong danh sách storages (nếu có)
-        const priceNum = parseInt(p.storages?.[0]?.price?.replace(/\D/g, "")) || 0;
+        // Lấy giá thấp nhất trong danh sách storages
+        const priceNum = p.storages ? .[0] ? .price ?
+            parseInt(p.storages[0].price.replace(/\D/g, '')) : 0;
 
-        const card = document.createElement("div");
-        card.className = "card";
+
+        const card = document.createElement('div');
+        card.className = 'card';
         card.innerHTML = `
             <a href="../BT_Miniproject/page2.html?id=${p._id}">
                 <div class="thumb">
                     <img src="${p.baseImage}" alt="${p.name}" style="max-width:60%">
                 </div>
-            </a>
+            </a> 
             <h3 class="title">${p.name}</h3>
             <div class="price">${fmt(priceNum)}</div>
             <div class="meta">
@@ -260,7 +259,7 @@ function renderProducts(list) {
         grid.appendChild(card);
     });
 
-    document.getElementById("shownCount").textContent = list.length;
+    document.getElementById('shownCount').textContent = list.length;
 }
 
 // ================================
@@ -276,26 +275,26 @@ function addToCart(id) {
 
 function updateCartUI() {
     const count = Object.values(state.cart).reduce((s, c) => s + c.qty, 0);
-    document.getElementById("cartCount").textContent = count;
+    document.getElementById('cartCount').textContent = count;
 }
 
 function renderCartList() {
-    const list = document.getElementById("cartList");
-    list.innerHTML = "";
+    const list = document.getElementById('cartList');
+    list.innerHTML = '';
     const entries = Object.values(state.cart);
 
     if (entries.length === 0) {
-        list.innerHTML = `<div style="color:var(--muted)">Giỏ hàng trống</div>`;
+        list.innerHTML = '<div style="color:var(--muted)">Giỏ hàng trống</div>';
         return;
     }
 
     entries.forEach(e => {
-        const priceNum = parseInt(e.item.storages?.[0]?.price?.replace(/\D/g, "")) || 0;
-        const row = document.createElement("div");
-        row.style.display = "flex";
-        row.style.justifyContent = "space-between";
-        row.style.alignItems = "center";
-        row.style.marginBottom = "8px";
+        const priceNum = e.item.storages ? .[0] ? .price ? parseInt(e.item.storages[0].price.replace(/\D/g, '')) : 0;
+        const row = document.createElement('div');
+        row.style.display = 'flex';
+        row.style.justifyContent = 'space-between';
+        row.style.alignItems = 'center';
+        row.style.marginBottom = '8px';
         row.innerHTML = `
             <div>${e.item.name} x ${e.qty}</div>
             <div>
@@ -316,29 +315,29 @@ function removeFromCart(id) {
 }
 
 function openCart() {
-    document.getElementById("modal").style.display = "flex";
+    document.getElementById('modal').style.display = 'flex';
     renderCartList();
 }
 
 function closeCart() {
-    document.getElementById("modal").style.display = "none";
+    document.getElementById('modal').style.display = 'none';
 }
 
 // ================================
 // 🟧 SỰ KIỆN CLICK
 // ================================
-document.addEventListener("click", e => {
-    const buy = e.target.closest("button[data-id]");
+document.addEventListener('click', e => {
+    const buy = e.target.closest('button[data-id]');
     if (buy) { addToCart(buy.dataset.id); return; }
 
-    const remove = e.target.closest("button[data-remove]");
+    const remove = e.target.closest('button[data-remove]');
     if (remove) { removeFromCart(remove.dataset.remove); return; }
 
-    if (e.target.id === "viewCartBtn") { openCart(); return; }
-    if (e.target.id === "closeModal") { closeCart(); return; }
+    if (e.target.id === 'viewCartBtn') { openCart(); return; }
+    if (e.target.id === 'closeModal') { closeCart(); return; }
 
-    if (e.target.id === "checkoutBtn") {
-        alert("Giỏ hàng sẽ được thanh toán (demo).");
+    if (e.target.id === 'checkoutBtn') {
+        alert('Giỏ hàng sẽ được thanh toán (demo).');
         closeCart();
         state.cart = {};
         updateCartUI();
@@ -350,7 +349,7 @@ document.addEventListener("click", e => {
 // ================================
 // 🟧 TÌM KIẾM SẢN PHẨM
 // ================================
-document.getElementById("searchInput").addEventListener("input", (ev) => {
+document.getElementById('searchInput').addEventListener('input', (ev) => {
     const q = ev.target.value.trim().toLowerCase();
     const filtered = state.products.filter(p => p.name.toLowerCase().includes(q));
     renderProducts(filtered);

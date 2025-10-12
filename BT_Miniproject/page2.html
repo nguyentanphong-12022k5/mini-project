@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Chi tiết sản phẩm - iPhone 15 Pro Max</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../BT_Miniproject/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -26,7 +27,10 @@
             <div class="cart">
                 <button class="btn secondary" id="viewCartBtn">Giỏ hàng</button>
                 <div class="count" id="cartCount">0</div>
-                <button class="btn secondary" id="viewCartBtn_dn">Đăng nhập/Đăng ký</button>
+                <div id="userMenu">
+                    <button class="btn secondary" id="loginBtn"><a href=""></a>Đăng nhập/Đăng ký</button>
+                </div>
+
             </div>
         </div>
     </header>
@@ -109,99 +113,14 @@
     </div>
 
 
-    <script>
-        // --- JavaScript giữ nguyên ---
-        const images = {
-            blue: "titan-Xanh.jpg",
-            white: "titan-trang.jpg",
-            black: "titan-den.jpg",
-            natural: "titan-tunhien.jpg"
-        };
-
-        const colors = ["blue", "white", "black", "natural"];
-        let currentColorIndex = 0;
-
-        const prices = {
-            256: {
-                price: "31.990.000đ",
-                old: "34.990.000đ",
-                discount: "-9%"
-            },
-            512: {
-                price: "36.990.000đ",
-                old: "39.990.000đ",
-                discount: "-7%"
-            },
-            1024: {
-                price: "41.990.000đ",
-                old: "44.990.000đ",
-                discount: "-6%"
-            }
-        };
-
-        const storages = ["256", "512", "1024"];
-        let currentStorageIndex = 0;
-
-        const productImg = document.getElementById("product-img");
-        const priceEl = document.getElementById("price");
-        const oldPriceEl = document.getElementById("old-price");
-        const discountEl = document.getElementById("discount");
-        const productTitle = document.getElementById("product-title");
-
-        function updateProduct() {
-            const color = colors[currentColorIndex];
-            const storage = storages[currentStorageIndex];
-
-            productImg.src = images[color];
-            priceEl.textContent = prices[storage].price;
-            oldPriceEl.textContent = prices[storage].old;
-            discountEl.textContent = prices[storage].discount;
-
-            const colorName = document.querySelector(`.color[data-color="${color}"]`).textContent;
-            productTitle.textContent = `iPhone 15 Pro Max - ${colorName} - ${storage}GB`;
-
-            document.querySelectorAll(".color").forEach(el => el.classList.remove("active"));
-            document.querySelectorAll(".storage").forEach(el => el.classList.remove("active"));
-            document.querySelector(`.color[data-color="${color}"]`).classList.add("active");
-            document.querySelector(`.storage[data-storage="${storage}"]`).classList.add("active");
-        }
-
-        document.querySelectorAll(".color").forEach(c => {
-            c.addEventListener("click", () => {
-                currentColorIndex = colors.indexOf(c.dataset.color);
-                updateProduct();
-            });
-        });
-
-        document.querySelectorAll(".storage").forEach(s => {
-            s.addEventListener("click", () => {
-                currentStorageIndex = storages.indexOf(s.dataset.storage);
-                updateProduct();
-            });
-        });
-
-        document.getElementById("next-color").addEventListener("click", () => {
-            currentColorIndex = (currentColorIndex + 1) % colors.length;
-            updateProduct();
-        });
-
-        document.getElementById("prev-color").addEventListener("click", () => {
-            currentColorIndex = (currentColorIndex - 1 + colors.length) % colors.length;
-            updateProduct();
-        });
-
-        document.getElementById("next-storage").addEventListener("click", () => {
-            currentStorageIndex = (currentStorageIndex + 1) % storages.length;
-            updateProduct();
-        });
-
-        document.getElementById("prev-storage").addEventListener("click", () => {
-            currentStorageIndex = (currentStorageIndex - 1 + storages.length) % storages.length;
-            updateProduct();
-        });
+    <script src="../BT_Miniproject/page2.js">
     </script>
-    <script src="../js/index.js"></script>
+    <script src="../js/trangchu.js"></script>
+    <script src="../js/login.js"></script>
     <script src="../BT_Miniproject/page2.js"></script>
+    <script src="../BT_Miniproject/index.js"></script>
+    <script src="../server/seed.js"></script>
+
 
 </body>
 

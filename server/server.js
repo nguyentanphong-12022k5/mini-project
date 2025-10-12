@@ -83,58 +83,94 @@
 // SERVER.JS (BACKEND)
 // ==========================
 
-// Import thư viện
+// ==========================
+// IMPORT THƯ VIỆN
+// ==========================
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
-// Khởi tạo app
+// ==========================
+// KHỞI TẠO APP
+// ==========================
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-// 🟧 Dùng __dirname có sẵn trong CommonJS
+// 🟧 Cho phép phục vụ file tĩnh (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, "..")));
 
+// ==========================
+// KẾT NỐI MONGODB (đúng với seed)
+// ==========================
+mongoose.connect(
+  "mongodb+srv://nguyentanphong120295_db_user:tanphong789@cluster0.9jdlnmf.mongodb.net/ecommerce",
+  { useNewUrlParser: true, useUnifiedTopology: true }
+)
+.then(() => console.log("✅ Kết nối MongoDB thành công (database: ecommerce)"))
+.catch(err => console.error("❌ Lỗi MongoDB:", err));
 
 // ==========================
-// KẾT NỐI MONGODB
-// ==========================
-mongoose.connect("mongodb+srv://nguyentanphong120295_db_user:tanphong789@cluster0.9jdlnmf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => console.log("✅ Kết nối MongoDB thành công"))
-    .catch(err => console.error("❌ Lỗi MongoDB:", err));
-
-// ==========================
-// TẠO SCHEMA & MODEL
+// SCHEMA & MODEL
 // ==========================
 const productSchema = new mongoose.Schema({
     name: String,
-    price: Number,
-    image: String,
+    baseImage: String,
     isFeatured: Boolean,
-    isOnSale: Boolean
+    isOnSale: Boolean,
+    colors: [
+        { key: String, label: String, image: String }
+    ],
+    storages: [
+        { capacity: Number, price: String, oldPrice: String, discount: String }
+    ],
+    rating: { type: Number, default: 4.8 },
+    reviewCount: { type: Number, default: 520 }
 });
+
 
 const Product = mongoose.model("Product", productSchema);
 
 // ==========================
 // API ROUTES
 // ==========================
-app.get("/api/products", async(req, res) => {
+
+// 🟦 Lấy toàn bộ sản phẩm
+app.get("/api/products", async (req, res) => {
+  try {
     const products = await Product.find();
     res.json(products);
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi khi tải danh sách sản phẩm" });
+  }
+});
+
+// 🟩 Lấy sản phẩm nổi bật
+app.get("/api/products/featured", async (req, res) => {
+  try {
+    const featured = await Product.find({ isFeatured: true });
+    res.json(featured);
+  } catch (err) {
+    res.status(500).json({ message: "Lỗi khi tải sản phẩm nổi bật" });
+  }
+});
+
+// 🟨 Lấy chi tiết sản phẩm theo ID
+app.get("/api/products/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) return res.status(404).json({ message: "Không tìm thấy sản phẩm" });
+    res.json(product);
+  } catch (err) {
+    res.status(400).json({ message: "ID không hợp lệ" });
+  }
 });
 
 // ==========================
 // START SERVER
 // ==========================
-// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => {
-    console.log(`🚀 Server chạy tại http://localhost:${PORT}`);
+  console.log(`🚀 Server chạy tại: http://localhost:${PORT}`);
 });
