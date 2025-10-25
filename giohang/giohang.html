@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="../giohang/giohang.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header>
+      <div class="container nav">
+        <div class="logo">TGDD-Demo</div>
+        <nav class="menu">
+          <a href="#">Trang chủ</a>
+          <a href="../html/sanpham.html">Sản phẩm</a>
+          <a href="#">Khuyến mãi</a>
+          <a href="../Toan/hotro/hotro.html">Hỗ trợ</a>
+        </nav>
+        <div class="search">
+          <input
+            id="searchInput"
+            placeholder="Tìm kiếm điện thoại, laptop, phụ kiện..."
+          />
+        </div>
+        <div class="cart">
+          <button class="btn secondary" id="viewCartBtn">
+            <a href="../giohang/giohang.html">Giỏ hàng</a>
+          </button>
+          <div class="count" id="cartCount">0</div>
+          <div id="userMenu">
+            <button class="btn secondary" id="loginBtn">
+              Đăng nhập/Đăng ký
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <h1>🛒 Giỏ hàng của bạn</h1>
+      <div id="cartContainer"></div>
+      <div class="dm">
+        <h3>Tổng tiền: <span id="totalPrice">0₫</span></h3>
+        <button onclick="window.location.href='../thanhtoan/thanhtoan.html'">
+          Thanh toán
+        </button>
+      </div>
+    </main>
+    <script src="../giohang/giohang.js"></script>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h3>🛍️ SIMPLE STORE</h3>
+          <p>
+            Cửa hàng công nghệ hàng đầu – mang đến trải nghiệm mua sắm dễ dàng,
+            nhanh chóng và uy tín.
+          </p>
+        </div>
+        <div class="footer-column">
+          <h4>Liên kết nhanh</h4>
+          <ul>
+            <li><a href="../html/Trangchu.html">Trang chủ</a></li>
+            <li><a href="../timkiem/timkiem_loc_sp.html">Sản phẩm</a></li>
+            <li><a href="../giohang/giohang.html">Giỏ hàng</a></li>
+            <li><a href="../Toan/hotro/hotro.html">Hỗ trợ</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Hỗ trợ khách hàng</h4>
+          <ul>
+            <li>
+              <a href="../Toan/chinhsach/chinhsach.html"
+                >Thông tin chính sách</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Liên hệ</h4>
+          <p>🏠 12 Nguyễn Văn Bảo, Q. Gò Vấp, TP.HCM</p>
+          <p>📞 0909 123 456</p>
+          <p>✉️ support@simplestore.vn</p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 SIMPLE STORE. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="../js/trangchu.js" defer></script>
+    <script src="../giohang/giohang.js" defer></script>
+  </body>
+</html>

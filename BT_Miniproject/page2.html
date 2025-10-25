@@ -1,127 +1,158 @@
 <!DOCTYPE html>
 <html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chi tiết sản phẩm</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      .product-detail {
+        display: flex;
+        gap: 40px;
+        margin-top: 20px;
+      }
+      .product-images img {
+        max-width: 380px;
+        border-radius: 8px;
+      }
+      .product-info {
+        flex: 1;
+      }
+      .rating {
+        margin: 10px 0;
+        color: #ff9900;
+        font-size: 15px;
+      }
+      .price {
+        font-size: 22px;
+        margin: 10px 0;
+        color: #e60000;
+      }
+      .old-price {
+        text-decoration: line-through;
+        margin-left: 10px;
+        color: gray;
+      }
+      .discount {
+        color: green;
+        margin-left: 5px;
+      }
+      .options span {
+        display: inline-block;
+        margin: 5px 6px;
+        padding: 6px 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .options span.active {
+        background: #007bff;
+        color: #fff;
+        border-color: #007bff;
+      }
+      .actions {
+        margin-top: 20px;
+      }
+      .btn,
+      .btn-buy,
+      .btn-cart {
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+      .btn-buy {
+        background-color: #ff9900;
+        color: white;
+      }
+      .btn-cart {
+        background-color: #007bff;
+        color: white;
+      }
+    </style>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Chi tiết sản phẩm - iPhone 15 Pro Max</title>
-    <link rel="stylesheet" href="../BT_Miniproject/style.css">
-    <link rel="stylesheet" href="../css/style.css">
-
-</head>
-
-<body>
+  <body>
     <header>
-        <div class="container nav">
-            <a href="../html/index2.html">
-                <div class="logo">TGDD-Demo</div>
-            </a>
-            <nav class="menu">
-                <a href="#">Trang chủ</a>
-                <a href="#">Sản phẩm</a>
-                <a href="#">Khuyến mãi</a>
-                <a href="#">Liên hệ</a>
-            </nav>
-            <div class="search">
-                <input id="searchInput" placeholder="Tìm kiếm điện thoại, laptop, phụ kiện..." />
-            </div>
-            <div class="cart">
-                <button class="btn secondary" id="viewCartBtn">Giỏ hàng</button>
-                <div class="count" id="cartCount">0</div>
-                <div id="userMenu">
-                    <button class="btn secondary" id="loginBtn"><a href=""></a>Đăng nhập/Đăng ký</button>
-                </div>
-
-            </div>
+      <div class="container nav">
+        <a href="../html/index2.html" class="logo">TGDD-Demo</a>
+        <nav class="menu">
+          <a href="../html/index2.html">Trang chủ</a>
+          <a href="../html/sanpham.html">Sản phẩm</a>
+          <a href="#">Khuyến mãi</a>
+          <a href="#">Liên hệ</a>
+        </nav>
+        <div class="search">
+          <input
+            id="searchInput"
+            placeholder="Tìm kiếm điện thoại, laptop, phụ kiện..."
+          />
         </div>
+        <div class="cart">
+          <button class="btn secondary" id="viewCartBtn">
+            <a href="../giohang/giohang.html">Giỏ hàng</a>
+          </button>
+          <div class="count" id="cartCount">0</div>
+          <div id="userMenu">
+            <button class="btn secondary" id="loginBtn">
+              Đăng nhập/Đăng ký
+            </button>
+          </div>
+        </div>
+      </div>
     </header>
 
     <div class="container">
-        <div class="product-detail">
-            <!-- Hình ảnh -->
-            <div class="product-images">
-                <img id="product-img" src="../BT_Miniproject/img/titan-Xanh.jpg" alt="iPhone 15 Pro Max">
-            </div>
-
-            <!-- Thông tin sản phẩm -->
-            <div class="product-info">
-                <div class="product-title" id="product-title">iPhone 15 Pro Max - Titan Xanh - 256GB</div>
-                <div class="rating">⭐⭐⭐⭐⭐ (4.8/5 - 520 đánh giá)</div>
-
-                <div class="price">
-                    <span id="price">31.990.000đ</span>
-                    <span class="old-price" id="old-price">34.990.000đ</span>
-                    <span class="discount" id="discount">-9%</span>
-                </div>
-
-                <div class="options">
-                    <strong>Màu sắc:</strong><br>
-                    <span class="color active" data-color="blue">Titan Xanh</span>
-                    <span class="color" data-color="white">Titan Trắng</span>
-                    <span class="color" data-color="black">Titan Đen</span>
-                    <span class="color" data-color="natural">Titan Tự Nhiên</span>
-                    <div>
-                        <button id="prev-color">◀</button>
-                        <button id="next-color">▶</button>
-                    </div>
-                </div>
-
-                <div class="options">
-                    <strong>Dung lượng:</strong><br>
-                    <span class="storage active" data-storage="256">256GB</span>
-                    <span class="storage" data-storage="512">512GB</span>
-                    <span class="storage" data-storage="1024">1TB</span>
-                    <div>
-                        <button id="prev-storage">◀</button>
-                        <button id="next-storage">▶</button>
-                    </div>
-                </div>
-
-                <div class="actions">
-                    <button class="btn-buy">Mua ngay</button>
-                    <button class="btn-cart" id="addToCartBtn">Thêm vào giỏ</button>
-                </div>
-            </div>
+      <div class="product-detail">
+        <!-- Hình ảnh -->
+        <div class="product-images">
+          <img id="product-img" src="../img/default.png" alt="Sản phẩm" />
         </div>
 
-        <!-- Khu vực mô tả sản phẩm -->
-        <div class="product-description">
-            <h2>Mô tả sản phẩm</h2>
-            <div class="description-content">
-                <img src="images/phone-demo.jpg" alt="Ảnh minh họa sản phẩm" />
-                <p>
-                    Chiếc điện thoại thông minh này sở hữu thiết kế sang trọng, hiệu năng ổn định cùng camera sắc nét, đáp ứng tốt nhu cầu học tập, làm việc và giải trí của bạn. Pin dung lượng lớn, sạc nhanh giúp bạn luôn kết nối mà không bị gián đoạn.
-                </p>
-            </div>
+        <!-- Thông tin sản phẩm -->
+        <div class="product-info">
+          <h2 id="product-title">Tên sản phẩm</h2>
+          <p class="rating">⭐⭐⭐⭐⭐ (4.8/5 - 520 đánh giá)</p>
+
+          <div class="price">
+            <span id="price">0₫</span>
+            <span id="old-price" class="old-price"></span>
+            <span id="discount" class="discount"></span>
+          </div>
+
+          <!-- Màu sắc -->
+          <div class="options">
+            <strong>Màu sắc:</strong><br />
+            <div id="colorOptions"></div>
+          </div>
+
+          <!-- Dung lượng -->
+          <div class="options">
+            <strong>Dung lượng:</strong><br />
+            <div id="storageOptions"></div>
+          </div>
+
+          <div class="actions">
+            <button class="btn-buy">Mua ngay</button>
+            <button class="btn-cart" id="addToCartBtn">Thêm vào giỏ</button>
+          </div>
         </div>
+      </div>
+
+      <!-- Mô tả sản phẩm -->
+      <div class="product-description" style="margin-top: 40px">
+        <h2>Mô tả sản phẩm</h2>
+        <div class="description-content">
+          <p>
+            Sản phẩm cao cấp với thiết kế sang trọng, hiệu năng mạnh mẽ và
+            camera vượt trội. Phù hợp cho công việc, học tập và giải trí hàng
+            ngày.
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- 🟧 Modal giỏ hàng -->
-    <div id="modal" style="display:none;
-                         position:fixed;
-                         top:0; left:0; right:0; bottom:0;
-                         background:rgba(0,0,0,0.5);
-                         justify-content:center;
-                         align-items:center;">
-        <div style="background:#fff; padding:20px; width:400px; border-radius:8px;">
-            <h2>Giỏ hàng</h2>
-            <div id="cartList"></div>
-            <div style="margin-top:15px; text-align:right;">
-                <button class="btn secondary" id="closeModal">Đóng</button>
-                <button class="btn" id="checkoutBtn">Thanh toán</button>
-            </div>
-        </div>
-    </div>
-
-
-    <script src="../BT_Miniproject/page2.js">
-    </script>
-    <script src="../js/trangchu.js"></script>
-    <script src="../js/login.js"></script>
+    <!-- Script -->
     <script src="../BT_Miniproject/page2.js"></script>
-    <script src="../BT_Miniproject/index.js"></script>
-    <script src="../server/seed.js"></script>
-
-
-</body>
-
+  </body>
 </html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiết sản phẩm - iPhone 15 Pro Max</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="product-detail">
+            <!-- Hình ảnh -->
+            <div class="product-images">
+                <img id="product-img" src="titan-Xanh.jpg" alt="iPhone 15 Pro Max">
+            </div>
+
+            <!-- Thông tin sản phẩm -->
+            <div class="product-info">
+                <div class="product-title" id="product-title">iPhone 15 Pro Max - Titan Xanh - 256GB</div>
+                <div class="rating">⭐⭐⭐⭐⭐ (4.8/5 - 520 đánh giá)</div>
+
+                <div class="price">
+                    <span id="price">31.990.000đ</span>
+                    <span class="old-price" id="old-price">34.990.000đ</span>
+                    <span class="discount" id="discount">-9%</span>
+                </div>
+
+                <div class="options">
+                    <strong>Màu sắc:</strong><br>
+                    <span class="color active" data-color="blue">Titan Xanh</span>
+                    <span class="color" data-color="white">Titan Trắng</span>
+                    <span class="color" data-color="black">Titan Đen</span>
+                    <span class="color" data-color="natural">Titan Tự Nhiên</span>
+
+                </div>
+
+                <div class="options">
+                    <strong>Dung lượng:</strong><br>
+                    <span class="storage active" data-storage="256">256GB</span>
+                    <span class="storage" data-storage="512">512GB</span>
+                    <span class="storage" data-storage="1024">1TB</span>
+
+                </div>
+
+                <div class="actions">
+                    <button class="btn-buy">Mua ngay</button>
+                    <button class="btn-cart">Thêm vào giỏ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Khu vực mô tả sản phẩm -->
+        <div class="product-description">
+            <h2>Mô tả sản phẩm</h2>
+            <div class="description-content">
+                <img src="mo ta san pham.jpg" alt="Ảnh minh họa sản phẩm" />
+                <p>
+                    Chiếc điện thoại thông minh này sở hữu thiết kế sang trọng, hiệu năng ổn định cùng camera sắc nét, đáp ứng tốt nhu cầu học tập, làm việc và giải trí của bạn. Pin dung lượng lớn, sạc nhanh giúp bạn luôn kết nối mà không bị gián đoạn.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const images = {
+            blue: "titan-Xanh.jpg",
+            white: "titan-trang.jpg",
+            black: "titan-den.jpg",
+            natural: "titan-tunhien.jpg"
+        };
+
+        const colors = ["blue", "white", "black", "natural"];
+        let currentColorIndex = 0;
+
+        const prices = {
+            256: {
+                price: "31.990.000đ",
+                old: "34.990.000đ",
+                discount: "-9%"
+            },
+            512: {
+                price: "36.990.000đ",
+                old: "39.990.000đ",
+                discount: "-7%"
+            },
+            1024: {
+                price: "41.990.000đ",
+                old: "44.990.000đ",
+                discount: "-6%"
+            }
+        };
+
+        const storages = ["256", "512", "1024"];
+        let currentStorageIndex = 0;
+
+        const productImg = document.getElementById("product-img");
+        const priceEl = document.getElementById("price");
+        const oldPriceEl = document.getElementById("old-price");
+        const discountEl = document.getElementById("discount");
+        const productTitle = document.getElementById("product-title");
+
+        function updateProduct() {
+            const color = colors[currentColorIndex];
+            const storage = storages[currentStorageIndex];
+
+            productImg.src = images[color];
+            priceEl.textContent = prices[storage].price;
+            oldPriceEl.textContent = prices[storage].old;
+            discountEl.textContent = prices[storage].discount;
+
+            const colorName = document.querySelector(`.color[data-color="${color}"]`).textContent;
+            productTitle.textContent = `iPhone 15 Pro Max - ${colorName} - ${storage}GB`;
+
+            document.querySelectorAll(".color").forEach(el => el.classList.remove("active"));
+            document.querySelectorAll(".storage").forEach(el => el.classList.remove("active"));
+            document.querySelector(`.color[data-color="${color}"]`).classList.add("active");
+            document.querySelector(`.storage[data-storage="${storage}"]`).classList.add("active");
+        }
+
+        document.querySelectorAll(".color").forEach(c => {
+            c.addEventListener("click", () => {
+                currentColorIndex = colors.indexOf(c.dataset.color);
+                updateProduct();
+            });
+        });
+
+        document.querySelectorAll(".storage").forEach(s => {
+            s.addEventListener("click", () => {
+                currentStorageIndex = storages.indexOf(s.dataset.storage);
+                updateProduct();
+            });
+        });
+
+        document.getElementById("next-color").addEventListener("click", () => {
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            updateProduct();
+        });
+
+        document.getElementById("prev-color").addEventListener("click", () => {
+            currentColorIndex = (currentColorIndex - 1 + colors.length) % colors.length;
+            updateProduct();
+        });
+
+        document.getElementById("next-storage").addEventListener("click", () => {
+            currentStorageIndex = (currentStorageIndex + 1) % storages.length;
+            updateProduct();
+        });
+
+        document.getElementById("prev-storage").addEventListener("click", () => {
+            currentStorageIndex = (currentStorageIndex - 1 + storages.length) % storages.length;
+            updateProduct();
+        });
+    </script>
+    <script>
+        const orderId = "HD" + Date.now();
+        const productName = document.getElementById("product-title").textContent;
+        const price = parseInt(document.getElementById("price").textContent.replace(/\D/g, ""), 10);
+
+        const res = await fetch("http://localhost:3000/create-payment", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                orderId,
+                amount: price,
+                orderInfo: productName
+            })
+        });
+    </script>
+    <script src="../chitietsp-dasboar/"></script>
+
+</body>
+
+</html>

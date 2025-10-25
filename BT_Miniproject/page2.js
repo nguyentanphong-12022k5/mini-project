@@ -140,104 +140,257 @@
 // 🟧 LẤY THÔNG TIN SẢN PHẨM CHI TIẾT
 // ================================
 
+// // ================================
+// // 🟧 LẤY CHI TIẾT SẢN PHẨM
+// // ================================
+// const fmt = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '₫';
+// const params = new URLSearchParams(window.location.search);
+// const productId = params.get("id");
+
+// if (!productId) {
+//     alert("❌ Không tìm thấy ID sản phẩm!");
+// } else {
+//     loadProductDetail(productId);
+// }
+
+// async function loadProductDetail(id) {
+//     try {
+//         const res = await fetch(`http://localhost:5000/api/products/${id}`);
+//         if (!res.ok) throw new Error("Không thể tải chi tiết sản phẩm");
+//         const product = await res.json();
+//         renderProduct(product);
+//     } catch (err) {
+//         console.error(err);
+//         alert("Lỗi tải chi tiết sản phẩm!");
+//     }
+// }
+
+// // ================================
+// // 🟧 HIỂN THỊ CHI TIẾT LÊN TRANG
+// // ================================
+// function renderProduct(p) {
+//     document.getElementById("product-title").textContent = p.name;
+//     document.getElementById("product-img").src = p.baseImage;
+
+//     // --- ⭐ Hiển thị đánh giá ---
+//     const ratingValue = p.rating || 4.8;
+//     const reviewCount = p.reviewCount || 520;
+//     const stars = "⭐".repeat(Math.round(ratingValue));
+//     document.querySelector(".rating").textContent =
+//         `${stars} (${ratingValue}/5 - ${reviewCount} đánh giá)`;
+
+//     // --- Hiển thị giá ---
+//     const firstStorage = p.storages?.[0];
+//     if (firstStorage) {
+//         const price = parseInt(firstStorage.price.replace(/\D/g, "")) || 0;
+//         const oldPrice = parseInt(firstStorage.oldPrice?.replace(/\D/g, "")) || 0;
+//         const discount = firstStorage.discount || "";
+
+//         document.getElementById("price").textContent = fmt(price);
+//         document.getElementById("old-price").textContent = oldPrice ? fmt(oldPrice) : "";
+//         document.getElementById("discount").textContent = discount ? `-${discount}` : "";
+//     }
+
+//     // --- Màu sắc ---
+//     const colorContainer = document.querySelector(".options strong + br").parentElement;
+//     colorContainer.innerHTML = `<strong>Màu sắc:</strong><br>` +
+//         p.colors.map((c, i) =>
+//             `<span class="color ${i === 0 ? "active" : ""}" data-color="${c.key}">
+//                 ${c.label}
+//             </span>`
+//         ).join("");
+
+//     // --- Dung lượng ---
+//     const storageContainer = document.querySelectorAll(".options")[1];
+//     storageContainer.innerHTML = `<strong>Dung lượng:</strong><br>` +
+//         p.storages.map((s, i) =>
+//             `<span class="storage ${i === 0 ? "active" : ""}" data-storage="${s.capacity}">
+//                 ${s.capacity}GB
+//             </span>`
+//         ).join("");
+
+//     setupOptionEvents();
+// }
+
+// // ================================
+// // 🟧 CHỌN MÀU & DUNG LƯỢNG
+// // ================================
+// function setupOptionEvents() {
+//     document.querySelectorAll(".color").forEach(el => {
+//         el.addEventListener("click", () => {
+//             document.querySelectorAll(".color").forEach(c => c.classList.remove("active"));
+//             el.classList.add("active");
+//         });
+//     });
+
+//     document.querySelectorAll(".storage").forEach(el => {
+//         el.addEventListener("click", () => {
+//             document.querySelectorAll(".storage").forEach(s => s.classList.remove("active"));
+//             el.classList.add("active");
+//         });
+//     });
+// }
+
+// // ================================
+// // 🟧 GIỎ HÀNG
+// // ================================
+// document.getElementById("addToCartBtn").addEventListener("click", () => {
+//     alert("🛒 Đã thêm sản phẩm vào giỏ hàng (demo)");
+// });
+
+// document.querySelector(".btn-buy").addEventListener("click", () => {
+//     alert("💳 Thanh toán ngay (demo)");
+// });
 // ================================
-// 🟧 LẤY CHI TIẾT SẢN PHẨM
 // ================================
-const fmt = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.') + '₫';
+// 🟧 LẤY CHI TIẾT SẢN PHẨM THEO ID
+// ================================
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
 if (!productId) {
-    alert("❌ Không tìm thấy ID sản phẩm!");
+  alert("❌ Không tìm thấy ID sản phẩm!");
 } else {
-    loadProductDetail(productId);
-}
-
-async function loadProductDetail(id) {
-    try {
-        const res = await fetch(`http://localhost:5000/api/products/${id}`);
-        if (!res.ok) throw new Error("Không thể tải chi tiết sản phẩm");
-        const product = await res.json();
-        renderProduct(product);
-    } catch (err) {
-        console.error(err);
-        alert("Lỗi tải chi tiết sản phẩm!");
-    }
+  loadProductDetail(productId);
 }
 
 // ================================
-// 🟧 HIỂN THỊ CHI TIẾT LÊN TRANG
+// 🟧 HÀM TẢI CHI TIẾT SẢN PHẨM TỪ BACKEND
+// ================================
+async function loadProductDetail(id) {
+  try {
+    const res = await fetch(`http://localhost:5000/api/products/${id}`);
+    if (!res.ok) throw new Error("Không thể tải chi tiết sản phẩm");
+    const product = await res.json();
+    renderProduct(product);
+  } catch (err) {
+    console.error("❌ Lỗi tải sản phẩm:", err);
+    alert("Không thể tải chi tiết sản phẩm!");
+  }
+}
+
+// ================================
+// 🟧 HIỂN THỊ DỮ LIỆU SẢN PHẨM LÊN TRANG
 // ================================
 function renderProduct(p) {
-    document.getElementById("product-title").textContent = p.name;
-    document.getElementById("product-img").src = p.baseImage;
+  // Tên + ảnh
+  document.getElementById("product-title").textContent = p.name;
+  document.getElementById("product-img").src = p.baseImage;
 
-    // --- ⭐ Hiển thị đánh giá ---
-    const ratingValue = p.rating || 4.8;
-    const reviewCount = p.reviewCount || 520;
-    const stars = "⭐".repeat(Math.round(ratingValue));
-    document.querySelector(".rating").textContent =
-        `${stars} (${ratingValue}/5 - ${reviewCount} đánh giá)`;
+  // Đánh giá
+  const ratingValue = p.rating || 4.8;
+  const reviewCount = p.reviewCount || 520;
+  const stars = "⭐".repeat(Math.round(ratingValue));
+  document.querySelector(".rating").textContent =
+    `${stars} (${ratingValue}/5 - ${reviewCount} đánh giá)`;
 
-    // --- Hiển thị giá ---
-    const firstStorage = p.storages?.[0];
-    if (firstStorage) {
-        const price = parseInt(firstStorage.price.replace(/\D/g, "")) || 0;
-        const oldPrice = parseInt(firstStorage.oldPrice?.replace(/\D/g, "")) || 0;
-        const discount = firstStorage.discount || "";
+  // Màu sắc
+  const colorContainer = document.getElementById("colorOptions");
+  colorContainer.innerHTML = p.colors
+    .map(
+      (c, i) =>
+        `<span class="color ${i === 0 ? "active" : ""}" 
+            data-color="${c.key}">
+          ${c.label}
+        </span>`
+    )
+    .join("");
 
-        document.getElementById("price").textContent = fmt(price);
-        document.getElementById("old-price").textContent = oldPrice ? fmt(oldPrice) : "";
-        document.getElementById("discount").textContent = discount ? `-${discount}` : "";
-    }
+  // Dung lượng (và giá)
+  const storageContainer = document.getElementById("storageOptions");
+  storageContainer.innerHTML = p.storages
+    .map(
+      (s, i) =>
+        `<span class="storage ${i === 0 ? "active" : ""}" 
+            data-storage="${s.capacity}" 
+            data-price="${s.price}">
+          ${s.capacity}GB
+        </span>`
+    )
+    .join("");
 
-    // --- Màu sắc ---
-    const colorContainer = document.querySelector(".options strong + br").parentElement;
-    colorContainer.innerHTML = `<strong>Màu sắc:</strong><br>` +
-        p.colors.map((c, i) =>
-            `<span class="color ${i === 0 ? "active" : ""}" data-color="${c.key}">
-                ${c.label}
-            </span>`
-        ).join("");
+  // Hiển thị giá đầu tiên
+  const firstStorage = p.storages[0];
+  document.getElementById("price").textContent = firstStorage.price || "";
+  document.getElementById("old-price").textContent = firstStorage.oldPrice || "";
+  document.getElementById("discount").textContent = firstStorage.discount || "";
 
-    // --- Dung lượng ---
-    const storageContainer = document.querySelectorAll(".options")[1];
-    storageContainer.innerHTML = `<strong>Dung lượng:</strong><br>` +
-        p.storages.map((s, i) =>
-            `<span class="storage ${i === 0 ? "active" : ""}" data-storage="${s.capacity}">
-                ${s.capacity}GB
-            </span>`
-        ).join("");
-
-    setupOptionEvents();
+  // Cài đặt sự kiện chọn màu & dung lượng
+  setupOptionEvents(p);
+  setupCartAndBuy(p);
 }
 
 // ================================
 // 🟧 CHỌN MÀU & DUNG LƯỢNG
 // ================================
-function setupOptionEvents() {
-    document.querySelectorAll(".color").forEach(el => {
-        el.addEventListener("click", () => {
-            document.querySelectorAll(".color").forEach(c => c.classList.remove("active"));
-            el.classList.add("active");
-        });
+function setupOptionEvents(product) {
+  document.querySelectorAll(".color").forEach((el) => {
+    el.addEventListener("click", () => {
+      document.querySelectorAll(".color").forEach((c) => c.classList.remove("active"));
+      el.classList.add("active");
     });
+  });
 
-    document.querySelectorAll(".storage").forEach(el => {
-        el.addEventListener("click", () => {
-            document.querySelectorAll(".storage").forEach(s => s.classList.remove("active"));
-            el.classList.add("active");
-        });
+  document.querySelectorAll(".storage").forEach((el) => {
+    el.addEventListener("click", () => {
+      document.querySelectorAll(".storage").forEach((s) => s.classList.remove("active"));
+      el.classList.add("active");
+
+      // Cập nhật giá tương ứng
+      const price = el.dataset.price || "";
+      document.getElementById("price").textContent = price;
     });
+  });
 }
 
 // ================================
-// 🟧 GIỎ HÀNG
+// 🟧 XỬ LÝ GIỎ HÀNG & THANH TOÁN
 // ================================
-document.getElementById("addToCartBtn").addEventListener("click", () => {
-    alert("🛒 Đã thêm sản phẩm vào giỏ hàng (demo)");
-});
+function setupCartAndBuy(product) {
+  // 🛒 Thêm vào giỏ
+  document.getElementById("addToCartBtn").addEventListener("click", () => {
+    const colorEl = document.querySelector(".color.active");
+    const storageEl = document.querySelector(".storage.active");
+    if (!colorEl || !storageEl) return alert("⚠️ Hãy chọn màu và dung lượng!");
 
-document.querySelector(".btn-buy").addEventListener("click", () => {
-    alert("💳 Thanh toán ngay (demo)");
-});
+    const color = colorEl.textContent.trim();
+    const storage = storageEl.dataset.storage;
+    const price = storageEl.dataset.price;
+
+    const item = {
+      id: `${product._id}-${color}-${storage}`,
+      name: `${product.name} - ${color} - ${storage}GB`,
+      img: product.baseImage,
+      price,
+      quantity: 1,
+    };
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(item);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("🛒 Đã thêm vào giỏ hàng!");
+  });
+
+  // 💳 Mua ngay
+  document.querySelector(".btn-buy").addEventListener("click", () => {
+    const colorEl = document.querySelector(".color.active");
+    const storageEl = document.querySelector(".storage.active");
+    if (!colorEl || !storageEl) return alert("⚠️ Hãy chọn màu và dung lượng!");
+
+    const color = colorEl.textContent.trim();
+    const storage = storageEl.dataset.storage;
+    const price = storageEl.dataset.price;
+
+    const selectedItem = {
+      id: product._id,
+      name: `${product.name} - ${color} - ${storage}GB`,
+      img: product.baseImage,
+      price,
+      quantity: 1,
+    };
+
+    localStorage.setItem("selectedItems", JSON.stringify([selectedItem]));
+    window.location.href = "../miniproject_quan/thanhtoan/thanhtoan.html";
+  });
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Thanh toán</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../thanhtoan/thanhtoan.css" />
+    <script src="../thanhtoan/thanhtoan.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="logo">TGDD-Demo</div>
+        <nav class="menu">
+          <a href="#">Trang chủ</a>
+          <a href="../html/sanpham.html">Sản phẩm</a>
+          <a href="#">Khuyến mãi</a>
+          <a href="#">Liên hệ</a>
+        </nav>
+        <div class="search">
+          <input
+            id="searchInput"
+            placeholder="Tìm kiếm điện thoại, laptop, phụ kiện..."
+          />
+        </div>
+        <div class="cart">
+          <button class="btn secondary" id="viewCartBtn">
+            <a href="../giohang/giohang.html">Giỏ hàng</a>
+          </button>
+          <div class="count" id="cartCount">0</div>
+          <div id="userMenu">
+            <button class="btn secondary" id="loginBtn">
+              <a href=""></a>Đăng nhập/Đăng ký
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <h1>💳 Thông tin thanh toán</h1>
+
+      <!-- 🟢 Thêm vùng hiển thị sản phẩm -->
+      <div id="checkoutList" class="checkout-list"></div>
+
+      <div class="checkout-form">
+        <p>
+          Tổng thanh toán: <b><span id="totalPrice">0</span> VNĐ</b>
+        </p>
+
+        <label>Họ tên người nhận:</label>
+        <input id="receiverName" placeholder="Nhập tên người nhận" />
+
+        <label>Số điện thoại:</label>
+        <input id="phone" placeholder="Nhập số điện thoại" />
+
+        <label>Địa chỉ:</label>
+        <input id="address" placeholder="Nhập địa chỉ giao hàng" />
+
+        <label>Phương thức thanh toán:</label>
+        <select id="payment">
+          <option value="cod">COD - Nhận hàng trả tiền</option>
+          <option value="momo">Ví MoMo</option>
+          <option value="zalopay">ZaloPay</option>
+          <option value="bank">Chuyển khoản ngân hàng</option>
+        </select>
+
+        <div id="qrSection" style="display: none">
+          <h4 id="qrTitle">Quét mã QR để thanh toán</h4>
+          <img id="qrImage" src="" alt="QR" />
+          <p id="qrInfo"></p>
+        </div>
+
+        <button id="confirmBtn">Xác nhận đặt hàng</button>
+      </div>
+    </main>
+  </body>
+</html>

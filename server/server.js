@@ -165,7 +165,28 @@ app.get("/api/products/:id", async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: "ID không hợp lệ" });
   }
+});// 🟠 Thêm sản phẩm mới
+app.post("/api/products", async (req, res) => {
+  try {
+    const newProduct = new Product(req.body);
+    await newProduct.save();
+    res.json(newProduct);
+  } catch (err) {
+    res.status(400).json({ message: "Lỗi thêm sản phẩm", error: err.message });
+  }
 });
+
+// 🔴 Xóa sản phẩm theo ID
+app.delete("/api/products/:id", async (req, res) => {
+  try {
+    const deleted = await Product.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ message: "Không tìm thấy sản phẩm" });
+    res.json({ message: "Đã xóa sản phẩm" });
+  } catch (err) {
+    res.status(400).json({ message: "Lỗi xóa sản phẩm", error: err.message });
+  }
+});
+
 
 // ==========================
 // START SERVER

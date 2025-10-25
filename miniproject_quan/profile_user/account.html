@@ -1,119 +1,143 @@
 <!DOCTYPE html>
 <html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tài khoản cá nhân - TGDD Demo</title>
-    <link rel="stylesheet" href="account.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+    <link rel="stylesheet" href="account.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
 
-<body>
-
+  <body>
     <!-- 🟧 Header -->
     <header>
-        <div class="logo">TGDD-Demo</div>
-        <nav>
-            <a href="/html/Trangchu.html">Trang chủ</a>
-            <a href="/html/sanpham.html">Sản phẩm</a>
-            <a href="khuyenmai.html">Khuyến mãi</a>
-            <a href="/Toan/hotro/hotro.html">Liên hệ</a>
-        </nav>
-        <div class="header-right">
-            <input type="text" placeholder="Tìm kiếm...">
-            <button class="cart-btn"><i class="fa fa-shopping-cart"></i> Giỏ hàng</button>
-        </div>
+      <div class="logo">TGDD-Demo</div>
+      <nav>
+        <a href="/html/Trangchu.html">Trang chủ</a>
+        <a href="/html/sanpham.html">Sản phẩm</a>
+        <a href="khuyenmai.html">Khuyến mãi</a>
+        <a href="/Toan/hotro/hotro.html">Liên hệ</a>
+      </nav>
+      <div class="header-right">
+        <input type="text" placeholder="Tìm kiếm..." />
+        <button class="cart-btn">
+          <i class="fa fa-shopping-cart"></i> Giỏ hàng
+        </button>
+      </div>
     </header>
 
     <!-- 🟧 Layout tài khoản -->
     <main class="account-container">
-        <!-- Menu bên trái -->
-        <aside class="sidebar">
-            <h3>Tài khoản</h3>
-            <ul>
-                <li class="active" data-section="profile"><i class="fa fa-user"></i> Thông tin cá nhân</li>
-                <li data-modal="orders"><i class="fa fa-box"></i> Quản lý đơn hàng</li>
-                <li data-modal="wishlist"><i class="fa fa-heart"></i> Sản phẩm mong muốn</li>
-                <li data-modal="password"><i class="fa fa-lock"></i> Đổi mật khẩu</li>
-            </ul>
-        </aside>
+      <!-- Menu bên trái -->
+      <aside class="sidebar">
+        <h3>Tài khoản</h3>
+        <ul>
+          <li class="active" data-section="profile">
+            <i class="fa fa-user"></i> Thông tin cá nhân
+          </li>
+          <li data-modal="orders">
+            <i class="fa fa-box"></i> Quản lý đơn hàng
+          </li>
+          <li data-modal="wishlist">
+            <i class="fa fa-heart"></i> Sản phẩm mong muốn
+          </li>
+          <li data-modal="password"><i class="fa fa-lock"></i> Đổi mật khẩu</li>
+        </ul>
+      </aside>
 
-        <!-- Nội dung bên phải -->
-        <section class="content" id="profile">
-            <h2>Thông tin cá nhân</h2>
-            <div class="profile">
-                <img id="account-avatar" src="https://via.placeholder.com/120" alt="avatar" class="avatar">
-                <div>
-                    <p><b>Họ tên:</b> <span id="account-name"></span></p>
-                    <p><b>Email:</b> <span id="account-email"></span></p>
-                    <p><b>Số điện thoại:</b> <span id="account-phone"></span></p>
-                    <p><b>Địa chỉ:</b> <span id="account-address"></span></p>
-                </div>
-            </div>
+      <!-- Nội dung bên phải -->
+      <section class="content" id="profile">
+        <h2>Thông tin cá nhân</h2>
+        <div class="profile">
+          <img
+            id="account-avatar"
+            src="https://via.placeholder.com/120"
+            alt="avatar"
+            class="avatar"
+          />
+          <div>
+            <p><b>Họ tên:</b> <span id="account-name"></span></p>
+            <p><b>Email:</b> <span id="account-email"></span></p>
+            <p><b>Số điện thoại:</b> <span id="account-phone"></span></p>
+            <p><b>Địa chỉ:</b> <span id="account-address"></span></p>
+          </div>
+        </div>
+        <button id="editProfileBtn">✏️ Chỉnh sửa thông tin</button>
 
-        </section>
+        <form id="editProfileForm">
+          <input type="text" id="editName" placeholder="Họ tên" />
+          <input type="email" id="editEmail" placeholder="Email" />
+          <input type="text" id="editPhone" placeholder="Số điện thoại" />
+          <input type="text" id="editAddress" placeholder="Địa chỉ" />
+          <div class="btn-group">
+            <button type="button" id="saveProfileBtn">💾 Lưu</button>
+            <button type="button" id="cancelEditBtn">❌ Hủy</button>
+          </div>
+        </form>
+      </section>
     </main>
 
     <!-- 🟧 Modal Quản lý đơn hàng -->
     <div class="modal" id="ordersModal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Quản lý đơn hàng</h3>
-            <table>
-                <tr>
-                    <th>Mã đơn</th>
-                    <th>Ngày</th>
-                    <th>Tổng tiền</th>
-                    <th>Trạng thái</th>
-                </tr>
-                <tr>
-                    <td>DH001</td>
-                    <td>20/09/2025</td>
-                    <td>2.500.000₫</td>
-                    <td>Đang giao</td>
-                </tr>
-                <tr>
-                    <td>DH002</td>
-                    <td>18/09/2025</td>
-                    <td>1.200.000₫</td>
-                    <td>Hoàn tất</td>
-                </tr>
-            </table>
-        </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Quản lý đơn hàng</h3>
+        <table>
+          <tr>
+            <th>Mã đơn</th>
+            <th>Ngày</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+          </tr>
+          <tr>
+            <td>DH001</td>
+            <td>20/09/2025</td>
+            <td>2.500.000₫</td>
+            <td>Đang giao</td>
+          </tr>
+          <tr>
+            <td>DH002</td>
+            <td>18/09/2025</td>
+            <td>1.200.000₫</td>
+            <td>Hoàn tất</td>
+          </tr>
+        </table>
+      </div>
     </div>
 
     <!-- 🟧 Modal Sản phẩm mong muốn -->
     <div class="modal" id="wishlistModal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Sản phẩm mong muốn</h3>
-            <ul class="wishlist">
-                <li>iPhone 15 Pro Max</li>
-                <li>Samsung Galaxy Z Fold</li>
-                <li>Laptop Asus Gaming</li>
-            </ul>
-        </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Sản phẩm mong muốn</h3>
+        <ul class="wishlist">
+          <li>iPhone 15 Pro Max</li>
+          <li>Samsung Galaxy Z Fold</li>
+          <li>Laptop Asus Gaming</li>
+        </ul>
+      </div>
     </div>
 
     <!-- 🟧 Modal Đổi mật khẩu -->
     <div class="modal" id="passwordModal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Đổi mật khẩu</h3>
-            <form>
-                <label>Mật khẩu cũ</label>
-                <input type="password">
-                <label>Mật khẩu mới</label>
-                <input type="password">
-                <label>Nhập lại mật khẩu</label>
-                <input type="password">
-                <button type="submit">Xác nhận</button>
-            </form>
-        </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Đổi mật khẩu</h3>
+        <form>
+          <label>Mật khẩu cũ</label>
+          <input type="password" />
+          <label>Mật khẩu mới</label>
+          <input type="password" />
+          <label>Nhập lại mật khẩu</label>
+          <input type="password" />
+          <button type="submit">Xác nhận</button>
+        </form>
+      </div>
     </div>
 
     <script src="account.js"></script>
-</body>
-
+  </body>
 </html>

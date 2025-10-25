@@ -4,57 +4,162 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quản lý đơn hàng - TGDD Demo</title>
-  <link rel="stylesheet" href="/Quanlydonhang/donhang.css">
-/>
+  <link rel="stylesheet" href="donhang.css">
+  <link rel="stylesheet" href="/css/style.css ">
 </head>
 <body>
   <!-- Header -->
   <header>
-    <div class="logo"><strong style="color:#ff6a00;">TGDD-Demo</strong></div>
-    <nav>
-      <a href="#">Trang chủ</a>
-      <a href="#">Sản phẩm</a>
-      <a href="#">Khuyến mãi</a>
-      <a href="#">Liên hệ</a>
-    </nav>
-    <div>
-      <button>Giỏ hàng (0)</button>
-      <button>Đăng xuất</button>
-    </div>
-  </header>
+      <div class="container nav">
+        <div class="logo">TGDD-Demo</div>
+        <nav class="menu">
+          <a href="/html/Trangchu.html">Trang chủ</a>
+          <a href="/html/sanpham.html">Sản phẩm</a>
+          <a href="#">Khuyến mãi</a>
+          <a href="/Toan/hotro/hotro.html">Hỗ trợ</a>
+        </nav>
+        <div class="search">
+          <input
+            id="searchInput"
+            placeholder="Tìm kiếm điện thoại, laptop, phụ kiện..."
+          />
+        </div>
+        <div class="cart">
+          <button class="btn secondary" id="viewCartBtn">
+            <a href="/giohang/giohang.html">Giỏ hàng</a>
+          </button>
+          <div class="count" id="cartCount">0</div>
+          <div id="userMenu">
+            <button class="btn secondary" id="loginBtn">
+              Đăng nhập/Đăng ký
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
 
   <!-- Nội dung chính -->
   <main class="container">
     <h2>Quản lý đơn hàng</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Mã đơn</th>
-          <th>Sản phẩm</th>
-          <th>Tổng tiền</th>
-          <th>Trạng thái</th>
-          <th>Hành động</th>
-        </tr>
-      </thead>
-      <tbody id="orderTable">
-        <!-- JS sẽ load dữ liệu vào đây -->
-      </tbody>
-    </table>
 
-    <!-- Chi tiết đơn hàng -->
-    <div class="order-detail" id="orderDetail">
-      <h3>Chi tiết đơn hàng</h3>
-      <p><strong>Mã đơn:</strong> <span id="detailId"></span></p>
-      <p><strong>Sản phẩm:</strong> <span id="detailProduct"></span></p>
-      <p><strong>Tổng tiền:</strong> <span id="detailTotal"></span></p>
-      <p><strong>Trạng thái:</strong> <span id="detailStatus"></span></p>
-      <button id="closeDetail">Đóng</button>
-    </div>
+    <!-- Bảng đơn hàng -->
+    <main class="container">
+  <h2>Quản lý đơn hàng</h2>
 
-    <!-- Thông báo -->
-    <div class="alert" id="alertMsg"></div>
-  </main>
+  <!-- Thống kê đơn hàng -->
+  <div id="orderStats" class="stats-box"></div>
 
-  <script src="/Quanlydonhang/donhang.js"></script>
+  <table>
+  <thead>
+    <tr>
+      <th>Mã đơn</th>
+      <th>Người nhận</th>
+      <th>Tổng tiền</th>
+      <th>Trạng thái</th>
+      <th>Cập nhật</th>
+      <th>Chi tiết</th>
+    </tr>
+  </thead>
+  <tbody id="orderTable"></tbody>
+</table>
+
+<div id="orderStats"></div>
+
+<!-- Chi tiết đơn -->
+<div id="orderDetail" style="display:none;">
+  <h3>Chi tiết đơn hàng</h3>
+  <p>Mã đơn: <span id="detailId"></span></p>
+  <p>Người nhận: <span id="detailReceiver"></span></p>
+  <p>Địa chỉ: <span id="detailAddress"></span></p>
+  <p>Điện thoại: <span id="detailPhone"></span></p>
+  <p>Sản phẩm:</p>
+  <div id="detailProducts"></div>
+  <p>Tổng tiền: <span id="detailTotal"></span></p>
+  <p>Trạng thái: <span id="detailStatus"></span></p>
+  <button id="closeDetail">Đóng</button>
+</div>
+
+<div id="alertMsg" class="alert"></div>
+<!-- Lịch sử mua sắm -->
+<section id="purchaseHistory" class="container">
+  <h2>Lịch sử mua sắm</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Mã đơn</th>
+        <th>Ngày mua</th>
+        <th>Tổng tiền</th>
+        <th>Trạng thái</th>
+        <th>Chi tiết</th>
+      </tr>
+    </thead>
+    <tbody id="historyTable"></tbody>
+  </table>
+</section>
+
+
+</main>
+
+<footer class="footer">
+      <div class="footer-container">
+        <!-- Cột 1: Logo & Giới thiệu -->
+        <div class="footer-column">
+          <h3>🛍️ SIMPLE STORE</h3>
+          <p>
+            Cửa hàng công nghệ hàng đầu – mang đến trải nghiệm mua sắm dễ dàng,
+            nhanh chóng và uy tín.
+          </p>
+        </div>
+
+        <!-- Cột 2: Liên kết nhanh -->
+        <div class="footer-column">
+          <h4>Liên kết nhanh</h4>
+          <ul>
+            <li><a href="../html/Trangchu.html">Trang chủ</a></li>
+            <li><a href="../timkiem/timkiem_loc_sp.html">Sản phẩm</a></li>
+            <li><a href="../giohang/giohang.html">Giỏ hàng</a></li>
+            <li><a href="../Toan//hotro/hotro.html">Hỗ trợ</a></li>
+          </ul>
+        </div>
+
+        <!-- Cột 3: Hỗ trợ khách hàng -->
+        <div class="footer-column">
+          <h4>Hỗ trợ khách hàng</h4>
+          <ul>
+            <li>
+              <a href="../Toan/chinhsach/chinhsach.html"
+                >Thông tin chính sách</a
+              >
+            </li>
+            <!-- <li><a href="#">Chính sách đổi trả</a></li>
+        <li><a href="#">Chính sách giao hàng</a></li>
+        <li><a href="#">Hướng dẫn mua hàng</a></li> -->
+          </ul>
+        </div>
+
+        <!-- Cột 4: Liên hệ -->
+        <div class="footer-column">
+          <h4>Liên hệ</h4>
+          <p>
+            <i class="fa-solid fa-location-dot"></i> 12 Nguyễn Văn Bảo, Q. Gò
+            Vấp, TP.HCM
+          </p>
+          <p><i class="fa-solid fa-phone"></i> 0909 123 456</p>
+          <p><i class="fa-solid fa-envelope"></i> support@simplestore.vn</p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 SIMPLE STORE. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="/js/trangchu.js"></script>
+  <script src="donhang.js"></script>
 </body>
 </html>

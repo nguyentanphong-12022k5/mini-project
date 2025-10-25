@@ -1,0 +1,194 @@
+header {
+    background: #fff;
+    border-bottom: 1px solid #e6e9ef;
+    position: sticky;
+    top: 0;
+    z-index: 40
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0
+}
+
+.logo {
+    font-weight: 700;
+    color: var(--accent)
+}
+
+.menu {
+    display: flex;
+    gap: 12px
+}
+
+.menu a {
+    text-decoration: none;
+    color: #111;
+    font-size: 14px
+}
+
+.menu a:hover {
+    color: var(--accent)
+}
+
+.search {
+    flex: 1
+}
+
+.search input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #dbe3ee
+}
+
+.cart {
+    display: flex;
+    align-items: center;
+    gap: 8px
+}
+
+.cart .count {
+    background: var(--accent);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 13px
+}
+
+/* ===============================
+   💳 TRANG THANH TOÁN - ĐỒNG BỘ FORMAT TRANG CHỦ
+   =============================== */
+main {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 40px;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.08);
+}
+
+/* 🏷️ Tiêu đề */
+main h1 {
+  font-size: 26px;
+  text-align: center;
+  color: var(--accent);
+  margin-bottom: 28px;
+  font-weight: 700;
+}
+
+/* ===============================
+   📋 FORM THANH TOÁN
+   =============================== */
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.checkout-form label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.checkout-form input,
+.checkout-form select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #dbe3ee;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.checkout-form input:focus,
+.checkout-form select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.25);
+}
+
+.checkout-form p {
+  margin: 6px 0 10px;
+  font-size: 16px;
+  color: #111;
+}
+
+/* 💰 Tổng thanh toán */
+#totalPrice {
+  font-size: 20px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ===============================
+   📷 QR THANH TOÁN
+   =============================== */
+#qrSection {
+  background: #f8f9fb;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  margin-top: 16px;
+}
+
+#qrSection h4 {
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: 600;
+}
+
+#qrSection img {
+  max-width: 200px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+/* ===============================
+   🔘 NÚT XÁC NHẬN
+   =============================== */
+#confirmBtn {
+  background: var(--accent);
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s ease, transform 0.15s ease;
+}
+
+#confirmBtn:hover {
+  background: #e85d00;
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   ⚙️ RESPONSIVE
+   =============================== */
+@media (max-width: 720px) {
+  main {
+    padding: 24px;
+    margin: 20px 12px;
+  }
+
+  .checkout-form input,
+  .checkout-form select {
+    font-size: 14px;
+  }
+
+  #confirmBtn {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard Quản lý bán điện thoại</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./style1.css" />
+  </head>
+
+  <body>
+    <!-- 🟧 Sidebar -->
+    <div class="sidebar">
+      <h2>📊 Dashboard</h2>
+      <ul>
+        <li><a href="#orders">Đơn hàng</a></li>
+        <li><a href="#customers">Khách hàng</a></li>
+        <li><a href="#revenue">Doanh thu</a></li>
+        <li><a href="#sales">Hiệu suất bán hàng</a></li>
+        <li><a href="#marketing">Quảng cáo / Marketing</a></li>
+        <li><a href="#finance">Tài chính</a></li>
+        <li><a href="#products">Quản lý sản phẩm</a></li>
+      </ul>
+    </div>
+
+    <!-- 🟧 Nội dung -->
+    <div class="content">
+      <div id="orders" class="section">
+        <h2>📦 Dashboard Đơn hàng</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Tổng đơn</h3>
+            <p>120</p>
+          </div>
+          <div class="card">
+            <h3>Đang giao</h3>
+            <p>35</p>
+          </div>
+          <div class="card">
+            <h3>Hoàn thành</h3>
+            <p>70</p>
+          </div>
+          <div class="card">
+            <h3>Bị hủy</h3>
+            <p>15</p>
+          </div>
+        </div>
+        <canvas id="ordersChart" class="chart-small"></canvas>
+      </div>
+
+      <div id="customers" class="section">
+        <h2>👤 Dashboard Khách hàng</h2>
+        <canvas id="customersChart"></canvas>
+      </div>
+
+      <div id="revenue" class="section">
+        <h2>💰 Dashboard Doanh thu</h2>
+        <canvas id="revenueChart"></canvas>
+      </div>
+
+      <div id="sales" class="section">
+        <h2>📱 Dashboard Hiệu suất bán hàng</h2>
+        <canvas id="salesChart"></canvas>
+      </div>
+
+      <div id="marketing" class="section">
+        <h2>📢 Dashboard Quảng cáo / Marketing</h2>
+        <canvas id="marketingChart" class="chart-small"></canvas>
+      </div>
+
+      <div id="finance" class="section">
+        <h2>💹 Dashboard Tài chính</h2>
+        <canvas id="financeChart"></canvas>
+      </div>
+
+      <!-- 🟧 Quản lý sản phẩm -->
+      <div id="products" class="section">
+        <h2>📦 Quản lý sản phẩm</h2>
+
+        <form id="productForm" class="product-form">
+          <input type="hidden" id="productId" />
+          <input
+            type="text"
+            id="productName"
+            placeholder="Tên sản phẩm"
+            required
+          />
+          <input
+            type="text"
+            id="baseImage"
+            placeholder="URL ảnh chính"
+            required
+          />
+          <input
+            type="number"
+            id="rating"
+            placeholder="Điểm đánh giá (0-5)"
+            min="0"
+            max="5"
+            step="0.1"
+          />
+          <input
+            type="number"
+            id="reviewCount"
+            placeholder="Số lượt đánh giá"
+            min="0"
+          />
+          <input type="text" id="colorKey" placeholder="Mã màu (vd: blue)" />
+          <input type="text" id="colorLabel" placeholder="Tên màu (vd: Xanh)" />
+          <input type="text" id="colorImage" placeholder="URL ảnh theo màu" />
+
+          <input
+            type="text"
+            id="storageCapacity"
+            placeholder="Dung lượng (vd: 128,256,512)"
+          />
+          <input
+            type="text"
+            id="storagePrice"
+            placeholder="Giá tương ứng (vd: 31990000,35990000,41990000)"
+          />
+          <input
+            type="text"
+            id="storageOldPrice"
+            placeholder="Giá cũ (tùy chọn)"
+          />
+          <input
+            type="text"
+            id="storageDiscount"
+            placeholder="Giảm giá (vd: -9%)"
+          />
+
+          <!-- 🆕 Thêm mô tả sản phẩm -->
+          <textarea
+            id="productDesc"
+            placeholder="Mô tả sản phẩm (tùy chọn)"
+          ></textarea>
+
+          <button id="addProduct" class="btn">Thêm sản phẩm</button>
+        </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Tên</th>
+              <th>Giá</th>
+              <th>Màu sắc</th>
+              <th>Đánh giá</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody id="productTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 🟧 Script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./charts.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

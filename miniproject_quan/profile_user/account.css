@@ -162,3 +162,87 @@ th, td {
   cursor: pointer;
   border-radius: 4px;
 }
+/* ==== Form chỉnh sửa profile ==== */
+#editProfileForm {
+    display: none; /* ẩn mặc định */
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    max-width: 500px;
+}
+
+#editProfileForm input {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+#editProfileForm input:focus {
+    border-color: #1e90ff;
+    box-shadow: 0 0 5px rgba(30,144,255,0.3);
+    outline: none;
+}
+
+/* Nút mở form */
+#editProfileBtn {
+    display: inline-block;
+    padding: 10px 25px;
+    margin-top: 15px;
+    background-color: #1e90ff;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#editProfileBtn:hover {
+    background-color: #1c86ee;
+}
+
+/* Nút lưu */
+#saveProfileBtn {
+    padding: 10px 25px;
+    background-color: #28a745;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+#saveProfileBtn:hover {
+    background-color: #218838;
+}
+
+/* Nút hủy */
+#cancelEditBtn {
+    padding: 10px 25px;
+    background-color: #dc3545;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#cancelEditBtn:hover {
+    background-color: #c82333;
+}
+
+/* Flex container cho 2 nút */
+#editProfileForm .btn-group {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 15px;
+}
